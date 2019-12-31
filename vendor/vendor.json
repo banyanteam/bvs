@@ -1,0 +1,103 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "b2p2okjgmHXTHroQLeHLZ7Kl/nw=",
+			"path": "github.com/armon/go-metrics",
+			"revision": "0f628e3176ffcdfc930c6fbc4b2cae8d0be03528",
+			"revisionTime": "2019-12-12T22:31:51Z"
+		},
+		{
+			"checksumSHA1": "m11imaRIIYlEiNXJ6dDfl05Q/yQ=",
+			"path": "github.com/go-ini/ini",
+			"revision": "94291fffe2b14f4632ec0e67c1bfecfc1287a168",
+			"revisionTime": "2019-12-25T02:25:40Z"
+		},
+		{
+			"checksumSHA1": "TFy43UHSyxU7SvFd54r/pDeNJLE=",
+			"path": "github.com/hashicorp/consul/api",
+			"revision": "62a111f7b6e9db24d3b7ba395f6ea6c6a4da3271",
+			"revisionTime": "2019-12-23T16:46:08Z"
+		},
+		{
+			"checksumSHA1": "x3Hz3DwZpIp521DL8nh9FpOQP/4=",
+			"path": "github.com/hashicorp/go-cleanhttp",
+			"revision": "d3fcbee8e1810ecee4bdbf415f42f84cfd0e3361",
+			"revisionTime": "2019-04-06T16:20:18Z"
+		},
+		{
+			"checksumSHA1": "P1Enisj7Nzf3wMl6lgPPar0ljoY=",
+			"path": "github.com/hashicorp/go-immutable-radix",
+			"revision": "0146a9aba1948ded4ed290cfd3fded2c15313f63",
+			"revisionTime": "2019-05-22T20:29:52Z"
+		},
+		{
+			"checksumSHA1": "VMCsLDLDBZ4A9nG5aDQPZ9uiTO8=",
+			"path": "github.com/hashicorp/go-rootcerts",
+			"revision": "c8a9a31cbd7675425d28e4e56713d0368a3aeb2c",
+			"revisionTime": "2019-12-16T10:17:43Z"
+		},
+		{
+			"checksumSHA1": "UThRII2e7MEeIJ2sTHbCXC+4tKU=",
+			"path": "github.com/hashicorp/golang-lru/simplelru",
+			"revision": "7f827b33c0f158ec5dfbba01bb0b14a4541fd81d",
+			"revisionTime": "2019-07-26T16:11:22Z"
+		},
+		{
+			"checksumSHA1": "0PeWsO2aI+2PgVYlYlDPKfzCLEQ=",
+			"path": "github.com/hashicorp/serf/coordinate",
+			"revision": "444282decf89405adc1b5222c81d8e224f72c53d",
+			"revisionTime": "2019-12-19T16:35:04Z"
+		},
+		{
+			"checksumSHA1": "Zb9hyuDuhy4VqoSvZPM85qWwT3s=",
+			"path": "github.com/lestrrat-go/file-rotatelogs",
+			"revision": "e0a88b0fe8408240e1560882fc17cb0bf66765cd",
+			"revisionTime": "2019-07-18T00:03:51Z"
+		},
+		{
+			"checksumSHA1": "kCiYjWVsI7JrUA9SogAebi2cp00=",
+			"path": "github.com/lestrrat-go/file-rotatelogs/internal/option",
+			"revision": "e0a88b0fe8408240e1560882fc17cb0bf66765cd",
+			"revisionTime": "2019-07-18T00:03:51Z"
+		},
+		{
+			"checksumSHA1": "zjUbP4ZkDr+S3slUKnmJScYyGAo=",
+			"path": "github.com/lestrrat-go/strftime",
+			"revision": "6b63b6de4db1514785520f626319d12516ee6932",
+			"revisionTime": "2019-12-30T22:11:18Z"
+		},
+		{
+			"checksumSHA1": "7zLQC+jG19ndjH24FVh/+ZliHac=",
+			"path": "github.com/mitchellh/go-homedir",
+			"revision": "af06845cf3004701891bf4fdb884bfe4920b3727",
+			"revisionTime": "2019-01-27T04:21:35Z"
+		},
+		{
+			"checksumSHA1": "J+g0oZePWp2zSIISD2dZZKTxmgg=",
+			"path": "github.com/mitchellh/mapstructure",
+			"revision": "3536a929edddb9a5b34bd6861dc4a9647cb459fe",
+			"revisionTime": "2018-10-05T04:51:35Z"
+		},
+		{
+			"checksumSHA1": "SVinfxcBSupb3+HEKpSBYFZ4Bh4=",
+			"path": "github.com/pkg/errors",
+			"revision": "7f95ac13edff643b8ce5398b6ccab125f8a20c1a",
+			"revisionTime": "2019-11-09T10:23:16Z"
+		},
+		{
+			"checksumSHA1": "Vdjr+0mTbBmbiKNC+T0n4IrnF6M=",
+			"path": "github.com/samuel/go-zookeeper/zk",
+			"revision": "2cc03de413da42869e2db7ce7965d3e978d917eb",
+			"revisionTime": "2019-09-23T20:27:52Z"
+		},
+		{
+			"checksumSHA1": "ZQuUoNaE17SltnbJlqHhHizLbKU=",
+			"path": "github.com/teris-io/shortid",
+			"revision": "771a37caa5cf0c81f585d7b6df4dfc77e0615b5c",
+			"revisionTime": "2017-10-29T13:18:06Z"
+		}
+	],
+	"rootPath": "github.com/bvs"
+}
