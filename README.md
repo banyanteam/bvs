@@ -32,12 +32,38 @@ basic video service for banyan platform
         下载bvs代码
         git clone https://github.com/banyanteam/bvs.git
         
-        获取其余依赖库
+        获取依赖库
         go get -u github.com/gin-gonic/gin
         go get -u github.com/kardianos/govendor
         
         将govendor添加到PATH
         export PATH=$GOPATH/bin:$PATH
+        下载其余依赖库
+        govendor sync
         
         cd bvs
         go build
+
+### 配置说明
+
+- 配置文件bvs.ini
+        
+        [net]
+        local_ip=172.20.226.192
+        public_ip=172.20.226.192
+
+        [http]
+        port=40000
+        
+        ;consul地址，本服务向consul注册，API网关获取服务的地址
+        [consul]
+        service_id=10001
+        service_name=av-domain-service
+        host_addr=172.20.226.192:8500
+        
+        ;zookeeper地址，从该zookeeper中获取注册的流媒体和网关信息
+        [zk]
+        host_addr=127.0.0.1:2181
+
+
+        
