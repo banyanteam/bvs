@@ -21,7 +21,7 @@ func (h *APIHandler) StreamService(c *gin.Context) {
 		log.Println(err)
 		return
 	}
-	log.Println("body: %s", string(data))
+	log.Println("body: ", string(data))
 
 	request := &MessageRequest{}
 	err = json.Unmarshal(data, request)

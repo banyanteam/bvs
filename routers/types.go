@@ -66,7 +66,7 @@ MSG_GET_STREAM_SERVER_ADDR_REQ
 		"streamType" : 0,
 		"assigned" : 0,
         "localHost" : "172.16.3.161:1935",
-        "publicHost" : "117.139.13.231:1935",
+        "publicHost" : "172.16.3.161:1935",
 	},
     "edge" : {
         "streamType" : 0,
@@ -95,7 +95,7 @@ type StreanServerAddrReponseParams struct {
 MSG_KICK_OFF_STREAM_REQ
 
 "requestParams": {
-	"tcUrl": "rtmp://117.139.13.231:19350/live?token=2e27aeff23f2474088e23b32d95f1884|rtmpUrltype=clientFetch|systemType=1|tId=70778459697783808",
+	"tcUrl": "rtmp://127.0.0.1:19350/live",
 	"stream": "livestream"
 }
 */
