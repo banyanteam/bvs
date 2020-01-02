@@ -1,6 +1,10 @@
 package routers
 
 import (
+	"strconv"
+	"strings"
+	"fmt"
+	"net/url"
 	"log"
 	"net/http"
 	"io/ioutil"
@@ -17,7 +21,7 @@ func (h *APIHandler) StreamService(c *gin.Context) {
 		log.Println(err)
 		return
 	}
-	log.Printf("body: %s\n", string(data))
+	log.Println("body: %s", string(data))
 
 	request := &MessageRequest{}
 	err = json.Unmarshal(data, request)
@@ -33,7 +37,9 @@ func (h *APIHandler) StreamService(c *gin.Context) {
 		h.KickStream(request, response)
 	}
 	
-	c.IndentedJSON(http.StatusOK, response)	
+	responseByte, _ := json.Marshal(response)
+	log.Println("response body: ", string(responseByte))
+	c.IndentedJSON(http.StatusOK, response)
 
 	return
 }
@@ -103,4 +109,76 @@ func (h *APIHandler) GetStreanServerAddrReq(request *MessageRequest, response *M
 
 func (h *APIHandler) KickStream(request *MessageRequest, response *MessageResponse) {
 	
+	bytesMsgParams, _ := json.Marshal(request.MsgContent.MsgParams)
+	requestParams := KickoffStreamRequestParams{}
+	err := json.Unmarshal(bytesMsgParams, &requestParams)
+	if err != nil {
+		log.Println("Unmarshal ", err)
+		response.MsgRetCode = MSG_RETCODE_PARA_ERROR
+		response.MsgRetMessage = err.Error()
+		return
+	}
+	
+	streamUrl, err := url.Parse(requestParams.TcUrl)
+	if err != nil {
+		log.Println("url Parse ", err)
+		response.MsgRetCode = MSG_RETCODE_PARA_ERROR
+		response.MsgRetMessage = err.Error()
+		return
+	}
+
+	streamNode := zkservice.StreamingNode{
+			LocalHost : streamUrl.Host,
+		}
+	manager := zkservice.NodeManager
+	err = manager.GetStreamNode(&streamNode)
+	if err != nil {
+		log.Println("GetStreamNode ", err)
+		response.MsgRetCode = MSG_RETCODE_INNER_ERROR
+		response.MsgRetMessage = err.Error()
+		return
+	}
+	
+	var clientPort int = 19850
+	port, _ := strconv.Atoi(streamUrl.Port())
+	clientPort = port + 500
+	if port < 10000 {
+		clientPort = port + 50
+	}
+	hostaddr := strings.Split(streamUrl.Host, ":")
+	//post message to stream node
+	client := &http.Client{}
+	clientRequestUrl := fmt.Sprintf("http://%s:%d/api/v1/control", hostaddr[0], clientPort)
+	clientRequestBody := ClientKickoffStreamRequestParams {
+			Control : "kick",
+			TcUrl : requestParams.TcUrl,
+			StreamName : requestParams.StreamName,
+		}
+	clientRequestBodyByte, _ := json.Marshal(clientRequestBody)
+	clientRequest, _ := http.NewRequest(http.MethodPost, clientRequestUrl, 
+			strings.NewReader(string(clientRequestBodyByte)) )
+	clientResponse, err := client.Do(clientRequest)
+	clientResponseBody := make([]byte, 0)
+	if err == nil {
+		if clientResponse.StatusCode == http.StatusOK {
+			clientResponseBody, err = ioutil.ReadAll(clientResponse.Body)
+		}
+	}
+
+	log.Printf("client request url %s, response %s\n", clientRequestUrl, string(clientResponseBody))
+	if err != nil {
+		log.Println("client request ", err)
+		response.MsgRetCode = MSG_RETCODE_INNER_ERROR
+		response.MsgRetMessage = err.Error()
+	} else {
+		response.MsgRetCode = MSG_RETCODE_OK
+		response.MsgRetMessage = "success"
+	}
+
+	response.MsgData.MsgContent = KickoffStreamReponseParams {
+		MsgType : MSG_KICK_OFF_STREAM_RSP,
+		Status : string(clientResponseBody),
+	}
+
+	return 
 }

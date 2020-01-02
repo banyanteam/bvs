@@ -90,3 +90,29 @@ type StreanServerAddrReponseParams struct {
 	Origin StreamingNodeParam `json:"origin"`
 	Edge StreamingNodeParam `json:"edge"`
 }
+
+/*
+MSG_KICK_OFF_STREAM_REQ
+
+"requestParams": {
+	"tcUrl": "rtmp://117.139.13.231:19350/live?token=2e27aeff23f2474088e23b32d95f1884|rtmpUrltype=clientFetch|systemType=1|tId=70778459697783808",
+	"stream": "livestream"
+}
+*/
+
+type KickoffStreamRequestParams struct {
+	TcUrl string `json:"tcUrl"`
+	StreamName string `json:"stream"`
+}
+
+type KickoffStreamReponseParams struct {
+	MsgType string `json:"response"`
+	Status string `json:"status"`
+}
+
+type ClientKickoffStreamRequestParams struct {
+	Control string `json:"control"`
+	TcUrl string `json:"tcUrl"`
+	StreamName string `json:"stream"`
+}
+

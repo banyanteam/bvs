@@ -143,6 +143,29 @@ func (manager *ZkNodeManager) GetMinPlayloadEdgeSNode(originNode *StreamingNode,
 	return nil
 }
 
+func (manager *ZkNodeManager) GetStreamNode(streamNode *StreamingNode) error{
+
+	manager.mLock.RLock()
+	for _, origin := range manager.origins {
+		if origin.LocalHost == streamNode.LocalHost {
+			*streamNode = origin.StreamingNode
+			manager.mLock.RUnlock()
+			return nil
+		}
+
+		for _, edge := range origin.edges {
+			if edge.LocalHost == streamNode.LocalHost {
+				*streamNode = *edge
+				manager.mLock.RUnlock()
+				return nil
+			}
+		}
+	}
+
+	log.Printf("can not find stream node, localhost %s\n", streamNode.LocalHost)
+	manager.mLock.RUnlock()
+	return errors.New("can not find stream node")
+}
 
 func (manager *ZkNodeManager) connectZk() error{
 
